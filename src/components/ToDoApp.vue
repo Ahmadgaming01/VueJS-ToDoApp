@@ -19,8 +19,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        <td>Study vuejs</td>
+                        <tr v-for = " (name , index) in tasks " :key="index">
+                        <td>{{ name.task }}</td>
                         <td>Witing</td>
                         <td><div>
                             <a href="#"><span class="fa fa-edit"></span></a>
@@ -44,7 +44,14 @@
 
 export default {
     name: "HelloWorld",
-
+    data(){
+        return{
+            tasks:[
+                {task:"study js",status:'waiting'},
+                {task:"study css",status:'done'}
+            ],
+        }
+    }
 
 }
 </script>
