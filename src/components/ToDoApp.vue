@@ -26,10 +26,11 @@
                             <a href="#"><span class="fa fa-edit"></span></a>
                             
                         </div></td>
-                        <td><div>
-                            
-                            <a href="#"><span class="fa fa-times"></span></a>
-                        </div></td>
+                        <td>
+                            <div @click ="deleteTask(index)">
+                                <span class="fa fa-times"></span>
+                            </div>
+                        </td>
                         </tr>
 
                     </tbody>
@@ -63,6 +64,9 @@ export default {
             if (this.new_task == 0) return;
             this.tasks.push({task:this.new_task,status:'waiting'})
             this.new_task = ""
+        },
+        deleteTask (index){
+            this.tasks.splice (index , 1) // (1) to delete one item
         },
 
     },
