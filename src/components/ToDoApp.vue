@@ -22,7 +22,7 @@
                         <tr v-for = " (name , index) in tasks " :key="index">
                         <td>{{ name.task }}</td>
                         <td>Witing</td>
-                        <td><div>
+                        <td><div @click="editTask(index)">
                             <a href="#"><span class="fa fa-edit"></span></a>
                             
                         </div></td>
@@ -52,6 +52,7 @@ export default {
                 {task:"study css",status:'done'}
             ],
             new_task:"",
+            edited_task:null,
         }
     },
     mounted(){
@@ -62,11 +63,24 @@ export default {
     methods:{
         addTask(){
             if (this.new_task == 0) return;
-            this.tasks.push({task:this.new_task,status:'waiting'})
-            this.new_task = ""
+
+
+            if (this.edited_task==null){
+                this.tasks.push({task:this.new_task,status:'waiting'})
+                this.new_task = ""
+            }
+            else{
+                this.tasks[this.edited_task].task=this.new_task
+                this.edited_task=null
+                this.new_task=""
+            }
         },
         deleteTask (index){
             this.tasks.splice (index , 1) // (1) to delete one item
+        },
+        editTask(index){
+            this.new_task = this.tasks[index].task
+            this.edited_task= index;
         },
 
     },
