@@ -4,8 +4,8 @@
             <div class="col-lg-6 mx-auto">
                 <h3 class="my-4 text-center">ToDo App</h3>
                 <div class="d-flex">
-                    <input type="text" class="form-control w-100 " placeholder="Enter your Task">
-                    <button class="btn btn-warning rounded ms-3">Add New Task</button>
+                    <input type="text" v-model="new_task" class="form-control w-100 " placeholder="Enter your Task">
+                    <button class="btn btn-warning rounded ms-3" @click="addTask" >Add New Task</button>
             </div>
                     </div>
                     <table class="table mt-5">
@@ -50,8 +50,22 @@ export default {
                 {task:"study js",status:'waiting'},
                 {task:"study css",status:'done'}
             ],
+            new_task:"",
         }
-    }
+    },
+    mounted(){
+        
+
+        
+    },
+    methods:{
+        addTask(){
+            if (this.new_task == 0) return;
+            this.tasks.push({task:this.new_task,status:'waiting'})
+            this.new_task = ""
+        },
+
+    },
 
 }
 </script>
