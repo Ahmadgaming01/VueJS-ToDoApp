@@ -42,6 +42,8 @@
 
 
 <script>
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 export default {
     name: "HelloWorld",
@@ -68,19 +70,29 @@ export default {
             if (this.edited_task==null){
                 this.tasks.push({task:this.new_task,status:'waiting'})
                 this.new_task = ""
+                toast.success('New task was added successfully !',{
+                autoClose: 2000,
+            }); 
             }
             else{
                 this.tasks[this.edited_task].task=this.new_task
                 this.edited_task=null
                 this.new_task=""
+                toast.success('task was updated successfully !',{
+                autoClose: 2000,
+            });
             }
         },
         deleteTask (index){
             this.tasks.splice (index , 1) // (1) to delete one item
+            toast.error('task was deleted successfully !',{
+            autoClose: 2000,
+            });
         },
         editTask(index){
             this.new_task = this.tasks[index].task
             this.edited_task= index;
+            
         },
 
     },

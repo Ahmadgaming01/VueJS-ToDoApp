@@ -1,19 +1,19 @@
 <template>
   
-  <ToDoApp>
+  <TodoApp>
 
-  </ToDoApp>
+  </TodoApp>
 </template>
 
 <script>
 
 
-import ToDoApp from './components/ToDoApp.vue';
+import TodoApp from './components/TodoApp.vue';
 
 export default {
   name: 'App',
   components: {
-    ToDoApp
+    TodoApp
 
 
 }
