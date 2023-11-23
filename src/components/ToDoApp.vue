@@ -19,9 +19,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for = " (name , index) in tasks " :key="index">
-                        <td>{{ name.task }}</td>
-                        <td>Witing</td>
+                        <tr v-for = " (task , index) in tasks " :key="index">
+                        <td>{{ task.name }}</td>
+                        <td>{{ task.status }}</td>
                         <td><div @click="editTask(index)">
                             <a href="#"><span class="fa fa-edit"></span></a>
                             
@@ -44,25 +44,35 @@
 <script>
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
+import axios from "axios"
 
 export default {
     name: "HelloWorld",
     data(){
         return{
-            tasks:[
-                {task:"study js",status:'waiting'},
-                {task:"study css",status:'done'}
-            ],
+            tasks:[],
             new_task:"",
             edited_task:null,
         }
     },
     mounted(){
-        
+        this.getTodo()
 
         
     },
     methods:{
+        getTodo(){
+            axios({
+                method: 'get',
+                url: 'http://localhost:8000/todo/'
+
+            }).then(
+                response => {
+                    this.tasks = response.data
+                }
+            )
+        },
+        
         addTask(){
             if (this.new_task == 0) return;
 
